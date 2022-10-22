@@ -25,27 +25,39 @@ class ChatRepository {
         .collection('users')
         .doc(auth.currentUser!.uid)
         .collection('chats')
+        .orderBy('timeSent')
         .snapshots()
         .asyncMap((event) async {
       List<ChatContact> contacts = [];
       for (var document in event.docs) {
         var chatContact = ChatContact.fromMap(document.data());
-        var userData = await firestore
-            .collection('users')
-            .doc(chatContact.contactId)
-            .get();
-        var user = UserModel.fromMap(userData.data()!);
-        contacts.add(
-          ChatContact(
-            name: user.name,
-            profilePic: user.profilePic,
-            contactId: chatContact.contactId,
-            timeSent: chatContact.timeSent,
-            lastMessage: chatContact.lastMessage,
-          ),
-        );
+        // var userData = await firestore
+        //     .collection('users')
+        //     .doc(chatContact.contactId)
+        //     .get();
+        // var user = UserModel.fromMap(userData.data()!);
+        contacts.insert(0, chatContact);
       }
       return contacts;
+    });
+  }
+
+  Stream<List<Message>> getChatStream(String recieverUserId) {
+    return firestore
+        .collection('users')
+        .doc(auth.currentUser!.uid)
+        .collection('chats')
+        .doc(recieverUserId)
+        .collection('messages')
+        .orderBy('timeSent')
+        .snapshots()
+        .asyncMap((event) async {
+      List<Message> messages = [];
+      for (var document in event.docs) {
+        var chat = Message.fromMap(document.data());
+        messages.add(chat);
+      }
+      return messages;
     });
   }
 
