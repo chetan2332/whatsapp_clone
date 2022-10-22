@@ -38,7 +38,7 @@ class Message {
       senderId: map['senderId'],
       text: map['text'],
       messageId: map['messageId'],
-      timeSent: map['timeSent'],
+      timeSent: DateTime.parse(map['timeSent']),
       isSeen: map['isSeen'],
       messageType: (map['messageType'] as String).toEnum(),
     );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/common/utils/colors.dart';
 // import 'package:whatsapp/info.dart';
-import 'package:whatsapp/widgets/chat_list.dart';
+import 'package:whatsapp/features/chat/widgets/chat_list.dart';
 import 'package:whatsapp/widgets/web_chat_appbar.dart';
 import 'package:whatsapp/features/chat/widgets/contacts_list.dart';
 // import 'package:whatsapp/widgets/my_message_card.dart';
@@ -47,7 +47,7 @@ class WebLayoutScreen extends StatelessWidget {
                 const ChatAppBar(),
                 const SizedBox(height: 20),
                 const Expanded(
-                  child: ChatList(),
+                  child: ChatList(''),
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.07,
