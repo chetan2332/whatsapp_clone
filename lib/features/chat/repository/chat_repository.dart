@@ -71,12 +71,11 @@ class ChatRepository {
         .set(recieverUserChatContact.toMap());
 
     var senderUserChatContact = ChatContact(
-      name: recieverData.name,
-      profilePic: recieverData.profilePic,
-      timeSent: timesent,
-      lastMessage: text,
-      contactId: recieverData.uid,
-    );
+        name: recieverData.name,
+        profilePic: recieverData.profilePic,
+        timeSent: timesent,
+        lastMessage: text,
+        contactId: recieverData.uid);
     await firestore
         .collection('users')
         .doc(auth.currentUser!.uid)

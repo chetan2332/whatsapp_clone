@@ -5,7 +5,7 @@ import 'package:whatsapp/common/widgets/loader.dart';
 import 'package:whatsapp/features/chat/controller/chat_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:whatsapp/models/chat_contact.dart';
-import '../features/chat/screens/mobile_chat_screen.dart';
+import '../screens/mobile_chat_screen.dart';
 
 class ContactsList extends ConsumerWidget {
   const ContactsList({super.key});
